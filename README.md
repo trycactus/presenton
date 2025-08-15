@@ -39,7 +39,9 @@ Presenton gives you complete control over your AI presentation workflow. Choose 
 - ✅ **AI Template Generation** — Create presentation templates from existing Powerpoint documents.
 - ✅ **Flexible Generation** — Build presentations from prompts or uploaded documents
 - ✅ **Export Ready** — Save as PowerPoint (PPTX) and PDF with professional formatting
-- ✅ **Built-In MCP Server** — Generate presentations over Model Context Protocol
+  <<<<<<< HEAD
+- # ✅ **Built-In MCP Server** — Generate presentations over Model Context Protocol
+  > > > > > > > 425d542 (update readme, add build commands)
 - ✅ **Bring Your Own Key** — Use your own API keys for OpenAI, Google Gemini, Anthropic Claude, or any compatible provider. Only pay for what you use, no hidden fees or subscriptions.
 - ✅ **Ollama Integration** — Run open-source models locally with full privacy
 - ✅ **OpenAI API Compatible** — Connect to any OpenAI-compatible endpoint with your own models
@@ -177,6 +179,7 @@ Content-Type: `application/json`
 | n_slides  | integer | No       | Number of slides to generate (default: 8, min: 5, max: 15)                                                                       |
 | language  | string  | No       | Language for the presentation (default: "English")                                                                               |
 | template  | string  | No       | Presentation template (default: "general"). Available options: "classic", "general", "modern", "professional" + Custom templates |
+| documents | File[]  | No       | Optional list of document files to include in the presentation. Supported file types: PDF, TXT, PPTX, DOCX                       |
 | export_as | string  | No       | Export format ("pptx" or "pdf", default: "pptx")                                                                                 |
 
 #### Response
