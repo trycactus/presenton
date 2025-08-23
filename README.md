@@ -52,12 +52,12 @@ Presenton gives you complete control over your AI presentation workflow. Choose 
 - ✅ **Docker Ready** — One-command deployment with GPU support for local models
 
 ## Presenton Cloud
-We're launching Presenton Cloud which will make it very easy to create presentations through UI, API and MCP. Join our [waitlist](https://presenton.ai) for early beta. 
+
+We're launching Presenton Cloud which will make it very easy to create presentations through UI, API and MCP. Join our [waitlist](https://presenton.ai) for early beta.
 
 ## Deploy on Cloud (one click deployment)
 
 [![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/presenton-ai-presentations?referralCode=ubp0kk)
-
 
 ## Running Presenton Docker
 
@@ -179,7 +179,6 @@ Content-Type: `multipart/form-data`
 | n_slides  | integer | No       | Number of slides to generate (default: 8, min: 5, max: 15)                                                                       |
 | language  | string  | No       | Language for the presentation (default: "English")                                                                               |
 | template  | string  | No       | Presentation template (default: "general"). Available options: "classic", "general", "modern", "professional" + Custom templates |
-| documents | File[]  | No       | Optional list of document files to include in the presentation. Supported file types: PDF, TXT, PPTX, DOCX                       |
 | export_as | string  | No       | Export format ("pptx" or "pdf", default: "pptx")                                                                                 |
 
 #### Response
@@ -196,11 +195,14 @@ Content-Type: `multipart/form-data`
 
 ```bash
 curl -X POST http://localhost:5000/api/v1/ppt/presentation/generate \
-  -F "prompt=Introduction to Machine Learning" \
-  -F "n_slides=5" \
-  -F "language=English" \
-  -F "template=general" \
-  -F "export_as=pptx"
+  -H "Content-Type: application/json" \
+  -d '{
+    "prompt": "Introduction to Machine Learning",
+    "n_slides": 5,
+    "language": "English",
+    "template": "general",
+    "export_as": "pptx"
+  }'
 ```
 
 #### Example Response
