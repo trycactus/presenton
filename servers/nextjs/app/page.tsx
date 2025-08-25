@@ -1,9 +1,6 @@
-import Home from "@/components/Home"
+import EmbeddedHomePage from "@/components/EmbeddedHomePage";
 
-const page = () => {
-    return (
-        <Home />
-    )
+// Minimal wrapper to keep page.tsx small and reduce merge conflicts.
+export default function Page() {
+  return <EmbeddedHomePage />;
 }
-
-export default page

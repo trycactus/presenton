@@ -5,6 +5,7 @@ import "./globals.css";
 import { Providers } from "./providers";
 import MixpanelInitializer from "./MixpanelInitializer";
 import { LayoutProvider } from "./(presentation-generator)/context/LayoutContext";
+import CactusReferenceWatcher from "@/components/CactusReferenceWatcher";
 import { Toaster } from "@/components/ui/sonner";
 const inter = localFont({
   src: [
@@ -28,7 +29,6 @@ const roboto = Roboto({
   weight: ["400"],
   variable: "--font-roboto",
 });
-
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://presenton.ai"),
@@ -79,7 +79,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   return (
     <html lang="en">
       <body
@@ -89,6 +88,8 @@ export default function RootLayout({
           <MixpanelInitializer>
             <LayoutProvider>
               {children}
+              {/* global component to sync reference */}
+              <CactusReferenceWatcher />
             </LayoutProvider>
           </MixpanelInitializer>
         </Providers>

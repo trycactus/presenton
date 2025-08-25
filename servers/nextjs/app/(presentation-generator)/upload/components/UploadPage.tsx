@@ -10,7 +10,7 @@
  */
 
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { clearOutlines, setPresentationId } from "@/store/slices/presentationGeneration";
@@ -56,6 +56,36 @@ const UploadPage = () => {
     showProgress: false,
     extra_info: "",
   });
+
+  // Check for embedded context and pre-populate the form
+  useEffect(() => {
+    const raw = localStorage.getItem("presenton_cactus_context");
+    if (raw) {
+      try {
+        const cactusContext = JSON.parse(raw);
+        console.log("🌵 Found cactus context in upload page:", cactusContext);
+        
+        // Check if there's embedded data with prompt
+        const embeddedDataRaw = localStorage.getItem("presenton_embedded_data");
+        if (embeddedDataRaw) {
+          const embeddedData = JSON.parse(embeddedDataRaw);
+          console.log("🌵 Found embedded data:", embeddedData);
+          
+          // Pre-populate the form with embedded data
+          if (embeddedData.prompt) {
+            setConfig(prev => ({
+              ...prev,
+              prompt: embeddedData.prompt,
+              slides: embeddedData.slideCount?.toString() || prev.slides
+            }));
+            console.log("🌵 Pre-populated form with embedded prompt");
+          }
+        }
+      } catch (e) {
+        console.error("Failed to parse embedded context:", e);
+      }
+    }
+  }, []);
 
   /**
    * Updates the presentation configuration
